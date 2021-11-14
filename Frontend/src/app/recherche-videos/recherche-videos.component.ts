@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-recherche-videos',
@@ -7,9 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RechercheVideosComponent implements OnInit {
 
+  @Input() videos: any;
   constructor() { }
 
   ngOnInit(): void {
   }
+
 
 }

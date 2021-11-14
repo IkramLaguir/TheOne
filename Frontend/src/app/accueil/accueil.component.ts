@@ -1,6 +1,5 @@
-import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
+import {Component, OnInit,Input} from '@angular/core';
 import { MessageService } from '../message/message.service';
-import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-accueil',
@@ -11,12 +10,14 @@ import {DomSanitizer} from '@angular/platform-browser';
 export class AccueilComponent implements OnInit {
 
 
-  titre: string;
+  titre :string;
   errorMessage: string;
+  liste : any;
 
   constructor(private message: MessageService, ) {
     this.titre = '';
     this.errorMessage = '';
+    this.liste=[];
   }
 
   ngOnInit(): void {
@@ -38,18 +39,19 @@ export class AccueilComponent implements OnInit {
     )
       .then((res) => res.json())
       .then((res) => {
-        const x: any = [];
         for (let i = 0 ; i < res.items.length ; i++){
-          x[i] = {
+          this.liste[i] = {
             url : `https://www.youtube.com/watch?v=${res.items[i].id.videoId}`,
             titre : res.items[i].snippet.title,
             description : res.items[i].snippet.description,
             createur : res.items[i].snippet.channelTitle
           };
-        }
+          console.log(this.liste[i])
 
-        console.log(x);
+        }
       });
+      console.log(this.liste)
+
   }
 
 
