@@ -1,0 +1,10 @@
+<form class="form">
+  <mat-form-field class="example-full-width form-field" appearance="fill">
+    <mat-label>Playlist</mat-label>
+    <input matInput placeholder="Playlist" #newPlaylist>
+  </mat-form-field>
+</form>
+<div class="button">
+  <button mat-button mat-dialog-close>Annuler</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]=newPlaylist (click)="addNewPlaylist(newPlaylist.value)">Valider</button>
+</div>

@@ -1,0 +1,15 @@
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Rechercher" aria-label="Rechercher" aria-describedby="basic-addon2">
+  <div class="input-group-append">
+    <button type="button" class="btn btn-primary" (click)="onSubmit()">
+      <fa-icon [icon]="faSearch"></fa-icon>
+    </button>
+  </div>
+</div>
+
+
+
+<app-recherche-videos [videos]="liste"></app-recherche-videos>
+
+
+
