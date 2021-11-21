@@ -30,15 +30,14 @@ exports.signup =  (req, res, next) => {
                 user_name : req.body.userName,
                 pays : req.body.pays,
                 date_of_birth : req.body.dateOfBirth,
-                interest : req.body.interest
+                interest : req.body.interest,
+                user : userModel._id
             })
 
             await infoUser.save()
                 .then(() => sendMessage(res,{ message: 'Utilisateur créé !' }))
                 .catch(error => sendError(res, { 'error': error.stack  }));
 
-            
-        
         })
         .catch(error => sendError(res ,{ 'error': error.stack }));        
   };
