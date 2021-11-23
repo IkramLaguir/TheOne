@@ -4,22 +4,6 @@ const app = express ();
 const  bodyParser = require('body-parser');
 
 // body-parser permet de récupérer facilement les données passées en POST:
-// l'équivalent de $_POST['toto'] est alors req.body.post. Comme, à terme,
-// votre application Angular enverra ses données au format JSON, on demande
-// au body parser de parser uniquement ce format.
-
-// const bodyParser = require('body-parser');
-// app.use(bodyParser.json());
-
-// // parse requests of content-type - application/json
-// app.use(express.json());
-
-// // parse requests of content-type - application/x-www-form-urlencoded
-// app.use(express.urlencoded({ extended: true }));
-
-// app.use(bodyParser()); //Now deprecated
-// app.use(bodyParser.urlencoded());
-// app.use(bodyParser.json());
 
 // parse application/json
 app.use(bodyParser.json());
@@ -37,15 +21,17 @@ app.use(cors({origin: 'http://localhost:4200', credentials: true}));
 
 
 //Configuration Mongodb
-const db = require('./models');
+const db = require('./models/index');
 db.mongoose
     .connect(db.uri,{ 
         useNewUrlParser: true,
+
         useUnifiedTopology: true 
     })
     .then(() => {
         console.log('Connected to the database !')
     })    
+
     .catch(err => {
         console.log('Cannot connect to the database !',err);
         process.exit();
@@ -53,5 +39,8 @@ db.mongoose
 const port = process.env.PORT || 3000;
 
 require('./routes/user.routes')(app);
+require('./routes/admin.routes')(app);
+require('./routes/advertiser.routes')(app);
+
 
 app.listen(port, () => {console.log (`listening on port ${port}`)});

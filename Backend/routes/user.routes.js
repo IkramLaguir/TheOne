@@ -14,7 +14,7 @@ module.exports = app =>{
     })
 
     const auth = require('../middleware/auth');
-    const userCtrl = require ('../controllers/user');
+    const userCtrl = require ('../controllers/user/user');
 
     router.post('/signup', (req, res) => { 
         userCtrl.signup(req,res); 
