@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NousContacterComponent } from './nous-contacter.component';
+import { SeConnecterComponent } from './se-connecter.component';
 
-describe('NousContacterComponent', () => {
-  let component: NousContacterComponent;
-  let fixture: ComponentFixture<NousContacterComponent>;
+describe('SeConnecterComponent', () => {
+  let component: SeConnecterComponent;
+  let fixture: ComponentFixture<SeConnecterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NousContacterComponent ]
+      declarations: [ SeConnecterComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NousContacterComponent);
+    fixture = TestBed.createComponent(SeConnecterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

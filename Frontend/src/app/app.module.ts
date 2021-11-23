@@ -11,14 +11,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { MatMenuModule } from '@angular/material/menu';
 import { MesPlaylistsComponent } from './mes-playlists/mes-playlists.component';
-import { NousContacterComponent } from './nous-contacter/nous-contacter.component';
 import { RechercheVideosComponent } from './recherche-videos/recherche-videos.component';
 import { LectureVideoComponent } from './lecture-video/lecture-video.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import { AjoutPlaylistComponent } from './ajout-playlist/ajout-playlist.component';
 import {MatInputModule} from '@angular/material/input';
 import { HttpClientModule } from '@angular/common/http';
-
+import { InscriptionComponent } from './inscription/inscription.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {SeConnecterComponent} from "./se-connecter/se-connecter.component";
+import { MatSelectModule } from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 @NgModule({
@@ -26,10 +29,14 @@ import { HttpClientModule } from '@angular/common/http';
     AccueilComponent,
     MenuComponent,
     MesPlaylistsComponent,
-    NousContacterComponent,
     RechercheVideosComponent,
     LectureVideoComponent,
-    AjoutPlaylistComponent],
+    AjoutPlaylistComponent,
+    InscriptionComponent,
+    SeConnecterComponent,
+
+
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -45,8 +52,10 @@ import { HttpClientModule } from '@angular/common/http';
     MatDialogModule,
     MatInputModule,
     HttpClientModule,
-
-
+    FormsModule,
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

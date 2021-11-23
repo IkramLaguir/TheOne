@@ -1,5 +1,10 @@
 <br/>
 <button mat-raised-button color="primary" (click)="openDialog()">+ Créer playlist</button>
-  <ul>
-    <li *ngFor="let playlist of playlists">{{playlist}}</li>
-  </ul>
+<div class="row row-cols-2">
+<mat-card *ngFor="let playlist of playlists">
+  <mat-card-title>{{playlist}}</mat-card-title>
+  <mat-card-content>
+    <p>Test</p>
+  </mat-card-content>
+</mat-card>
+</div>
