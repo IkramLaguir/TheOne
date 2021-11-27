@@ -17,11 +17,10 @@ export class MessageService {
     const adr: string = environment.url + '/addPlaylist/';
     return this.http.post<Data>(adr, titrePlaylist, { withCredentials: true });
   }
+
   login(data: any): Observable<Data> {
-    const adr: string = 'http://localhost:3001/login';
+    const adr: string = 'http://localhost:3000/api/user/login';
     return this.http.post<Data>(adr, data, { withCredentials: true });
   }
-
-
 
 }

@@ -14,6 +14,9 @@ const routes: Routes = [
   { path: 'lecture', component: LectureVideoComponent},
   { path: 'connect', component: SeConnecterComponent},
   { path: 'inscription', component: InscriptionComponent},
+  { path: '', component: AccueilComponent},
+
+
 
 
   { path: '**', component: AccueilComponent},
