@@ -26,12 +26,12 @@ module.exports = app =>{
     });
 
     //Create a Playlist:
-    router.post('/create', (req, res) => { 
+    router.post('/create', (req, res) => {
         playlistCtrl.create(req,res); 
     });
 
     //Get all playlist of a user
-    router.get('/playlists', (req, res) => { 
+    router.get('/playlists/:userId', (req, res) => {
         playlistCtrl.playlists(req,res); 
     });
 

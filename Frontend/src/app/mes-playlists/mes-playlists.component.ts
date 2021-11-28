@@ -9,8 +9,10 @@ import {MessageService} from "../message/message.service";
   styleUrls: ['./mes-playlists.component.scss']
 })
 export class MesPlaylistsComponent implements OnInit {
-  playlists : string[] = [];
+  playlists : any[] = [];
   playlist :string = '';
+  userId = sessionStorage.getItem("userId");
+
   constructor(public dialog: MatDialog, private message: MessageService) {
   }
 
@@ -21,18 +23,32 @@ export class MesPlaylistsComponent implements OnInit {
       }
     );
     dialogRef.afterClosed().subscribe(result => {
-      this.addPlaylist(result.value)
+      // A corriger - pas optimal
+      this.message.getAllPlaylist(this.userId).subscribe({
+        next: (value) => {
+          console.log(value.data)
+          this.playlists = value.data;
+        },
+      });
     });
 
   }
 
   ngOnInit(): void {
+    this.message.getAllPlaylist(this.userId).subscribe({
+      next: (value) => {
+        console.log(value.data)
+        this.playlists = value.data;
+      },
+    });
   }
+
+  // Ajouter une playlist à la liste des playlists
   addPlaylist(newPlaylist: string) {
     if (newPlaylist.length > 0)
       this.playlists.push(newPlaylist);
-    // console.log(this.playlists);
   }
+
 
 
 

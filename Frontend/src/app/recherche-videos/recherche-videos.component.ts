@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {MessageService} from "../message/message.service";
 
 @Component({
   selector: 'app-recherche-videos',
@@ -7,9 +8,35 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class RechercheVideosComponent implements OnInit {
   @Input() videos: any;
-  constructor() { }
+  userId = sessionStorage.getItem("userId");
+  playlists : any[] = [];
+
+  constructor(private message : MessageService) { }
 
   ngOnInit(): void {
+    this.message.getAllPlaylist(this.userId).subscribe({
+      next: (value) => {
+        console.log(value.data)
+        this.playlists = value.data;
+      },
+    });
+
   }
 
+  addVideo(playlistId : any, url:string): void{
+    console.log(playlistId);
+    console.log(url);
+
+    const obj : Object = {
+      playlistId : playlistId,
+      list:url,
+    }
+
+    this.message.addVideo(obj).subscribe({
+      next: (value) => {
+        console.log(value.data)
+      }
+    });
+
+  }
 }

@@ -13,14 +13,33 @@ export class MessageService {
 
   constructor(private http: HttpClient) { }
 
-  addPlaylist(titrePlaylist : string): Observable<Data> {
-    const adr: string = environment.url + '/addPlaylist/';
-    return this.http.post<Data>(adr, titrePlaylist, { withCredentials: true });
+  // add Playlist to bdd
+
+  addPlaylist(obj : Object): Observable<Data> {
+    console.log(obj);
+    const adr: string = environment.url + '/create';
+    return this.http.post<Data>(adr, obj, { withCredentials: true });
   }
 
+  // se connecter via un email + password
+
   login(data: any): Observable<Data> {
-    const adr: string = 'http://localhost:3000/api/user/login';
+    const adr: string = environment.url +'/login';
     return this.http.post<Data>(adr, data, { withCredentials: true });
   }
+
+  // afficher les playlists créés par l'utilisateur
+
+  getAllPlaylist(userId : any):Observable<Data>{
+    const adr : string = environment.url + '/playlists/'+ userId;
+    return this.http.get<Data>(adr, { withCredentials: true });
+  }
+
+  addVideo(obj: any): Observable<Data>{
+    const adr : string = environment.url +'/addVideo'
+    return this.http.post<Data>(adr, obj, { withCredentials: true });
+
+  }
+
 
 }

@@ -9,19 +9,34 @@ import {MessageService} from "../message/message.service";
 export class AjoutPlaylistComponent implements OnInit {
 
   @Output() newItemEvent = new EventEmitter<string>();
+  userId = sessionStorage.getItem("userId");
 
 
-  constructor() {
+  constructor(private message : MessageService) {
 
   }
 
   ngOnInit(): void {
   }
 
-  addNewPlaylist(titrePlaylist: string) {
-    // Faire l'enregistrement dans la BDD
+  // Ajouter une nouvelle playlist
+  addNewPlaylist(titrePlaylist: string, userId : any) {
     this.newItemEvent.emit(titrePlaylist);
+
+    const obj : Object = {
+      titre : titrePlaylist,
+      userId: userId
+    }
+    this.message.addPlaylist(obj).subscribe({
+      next: (value) => {
+        console.log(value.data)
+      }
+    });
   }
+
+
+
+
 
 }
 

@@ -45,7 +45,11 @@ export class SeConnecterComponent implements OnInit {
 
 
     this.auth.sendAuthentication(obj).subscribe({
-      next: (value) => this.auth.finalizeAuthentication(value),
+      next: (value) => {
+        //console.log(value);
+        sessionStorage.setItem("userId", value.data.userId);
+        this.auth.finalizeAuthentication(value);
+      },
       complete: () => this.finalizeCheck(),
 
     });

@@ -35,7 +35,7 @@ exports.create =  async(req, res, next) => {
 
 //Get all playlist of a user
 exports.playlists = (req,res,next)=> {
-    const userId = req.body.userId;
+    const userId = req.params.userId;
     Playlist.find({user : userId})
         .then(data => sendMessage(res,data))
         .catch(error => sendError(res, { 'error': error.stack  }));
@@ -56,6 +56,7 @@ exports.deletePlaylist = (req,res,next) =>{
 //add a video to a playlist
 exports.addVideo = (req,res,next) =>{
     const playlistId = req.body.playlistId;
+    console.log(playlistId);
     const video = req.body.list;
     Playlist.findById(playlistId,async(error,data)=>{
         if(error){
