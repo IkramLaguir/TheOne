@@ -40,7 +40,7 @@ exports.signup =  (req, res, next) => {
 
         })
         .catch(error => sendError(res ,{ 'error': error.stack }));        
-  };
+};
 
 
 exports.login = (req, res, next) => {
@@ -62,8 +62,10 @@ exports.login = (req, res, next) => {
                         { expiresIn: '24h' }
                         )
                 });
-                })
-                .catch(error => sendError(res, { error }));
+                //req.auth = {userId: user._id}
+                //res.header('Authorization', 'Bearer ' + token);
             })
             .catch(error => sendError(res, { error }));
+        })
+        .catch(error => sendError(res, { error }));
 };
