@@ -4,7 +4,7 @@
   <button mat-button [matMenuTriggerFor]="menu" color="primary">Ajouter à la playlist</button>
   <mat-menu #menu="matMenu">
     <div *ngFor="let playlist of playlists">
-    <button mat-menu-item (click)="addVideo(playlist._id,video.url)">{{playlist.name}}</button>
+    <button mat-menu-item (click)="addVideo(playlist._id, video)">{{playlist.name}}</button>
     </div>
     <br/>
   </mat-menu>

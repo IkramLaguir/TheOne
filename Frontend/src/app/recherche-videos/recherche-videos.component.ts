@@ -23,13 +23,11 @@ export class RechercheVideosComponent implements OnInit {
 
   }
 
-  addVideo(playlistId : any, url:string): void{
+  addVideo(playlistId : any, video : any): void{
     console.log(playlistId);
-    console.log(url);
-
     const obj : Object = {
       playlistId : playlistId,
-      list:url,
+      list : video
     }
 
     this.message.addVideo(obj).subscribe({
