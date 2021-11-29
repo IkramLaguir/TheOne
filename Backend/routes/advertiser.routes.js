@@ -8,13 +8,14 @@ module.exports = app =>{
     var router = require("express").Router();
 
 
+    const auth = require('../middleware/auth');
+    const advertiserCtrl = require ('../controllers/advertiser/advertiser');
+
+
     router.get('/',(req,res)=> {
         //sendMessage(res,"Welcome to The One!");
         sendMessage(res,"Welcome to The One!");
     })
-
-    const auth = require('../middleware/auth');
-    const advertiserCtrl = require ('../controllers/advertiser/advertiser');
 
     router.post('/signup', (req, res) => { 
         advertiserCtrl.signup(req,res);
@@ -25,7 +26,12 @@ module.exports = app =>{
         advertiserCtrl.login(req,res); 
     });
 
-    //app.post('/annonceur', auth ,(req, res) => { userCtrl.login(req,res); });
+    router.post('/create',(req, res) => { 
+        advertiserCtrl.create(req,res); 
+    });
+    
+
+
 
     app.use('/api/advertiser',router);
 }

@@ -12,8 +12,12 @@ db.user = require('./user/user');//(mongoose)
 db.infoUser = require('./user/infoUser');//(mongoose)
 db.playlist = require('./user/playlist');
 
+
+db.advertiser = require('./advertiser/advertiser');//(mongoose)
+db.advert = require('./advertiser/advert');
+
+
 db.admin = require('./admin/admin');//(mongoose)
 
 
-db.advertiser = require('./advertiser/advertiser');//(mongoose)
 module.exports = db;

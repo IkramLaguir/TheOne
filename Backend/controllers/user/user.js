@@ -2,7 +2,7 @@
 const db = require('../../models/index')
 
 const User = db.user
-const InfoUser = db.infoUser
+//const InfoUser = db.infoUser
 
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
@@ -16,7 +16,14 @@ exports.signup =  (req, res, next) => {
 
             const user = {
                 email: req.body.email,
-                password: hash
+                password: hash,
+                info:{
+                    user_name : req.body.userName,
+                    pays : req.body.pays,
+                    date_of_birth : req.body.dateOfBirth,
+                    interest : req.body.interest,
+                }
+
             }
 
             const userModel = new User(user);
@@ -26,17 +33,17 @@ exports.signup =  (req, res, next) => {
                 .catch(error => sendError(res ,{ 'error': error.stack }));
                 
 
-            const infoUser = new InfoUser({
-                user_name : req.body.userName,
-                pays : req.body.pays,
-                date_of_birth : req.body.dateOfBirth,
-                interest : req.body.interest,
-                user : userModel._id
-            })
+            // const infoUser = new InfoUser({
+            //     user_name : req.body.userName,
+            //     pays : req.body.pays,
+            //     date_of_birth : req.body.dateOfBirth,
+            //     interest : req.body.interest,
+            //     user : userModel._id
+            // })
 
-            await infoUser.save()
-                .then(() => sendMessage(res,{ message: 'Utilisateur créé !' }))
-                .catch(error => sendError(res, { 'error': error.stack  }));
+            // await infoUser.save()
+            //     .then(() => sendMessage(res,{ message: 'Utilisateur créé !' }))
+            //     .catch(error => sendError(res, { 'error': error.stack  }));
 
         })
         .catch(error => sendError(res ,{ 'error': error.stack }));        

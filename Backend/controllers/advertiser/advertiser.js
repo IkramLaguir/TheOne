@@ -2,6 +2,7 @@
 const db = require('../../models/index')
 
 const Advertiser = db.advertiser
+const Advert = db.advert
 
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
@@ -9,25 +10,17 @@ const jwt = require('jsonwebtoken');
 const {sendError, sendMessage} = require ("../../message");
 
 exports.signup =  (req, res, next) => {
-    //console.log(req.body);
     bcrypt.hash(req.body.password, 10)
         .then(async (hash) => {
-
             const advertiser = {
                 email: req.body.email,
                 password: hash,
                 user_name : req.body.userName,
-
             }
-
             const advertiserModel = new Advertiser(advertiser);
-            
             await advertiserModel.save()
                 .then(() => sendMessage(res,{ message: 'Utilisateur créé !' }))
                 .catch(error => sendError(res ,{ 'error': error.stack }));
-                
-
-
         })
         .catch(error => sendError(res ,{ 'error': error.stack }));        
   };
@@ -57,3 +50,23 @@ exports.login = (req, res, next) => {
             })
             .catch(error => sendError(res, { error }));
 };
+
+// Add an advert
+exports.create =  async(req, res, next) => {
+    const advert = {
+        advertiser : req.body.advertiserId,
+        title: req.body.titre,
+        minAge: req.body.ageMin,
+        country: req.body.pays,
+        category:req.body.category,
+        text: req.body.text,
+        status : "En cours",
+    }
+    
+    const advertModel = new Advert(advert);
+    
+    await advertModel.save()
+        .then(() => sendMessage(res,{ message: 'Annonce créé !' }))
+        .catch(error => sendError(res ,{ 'error': error.stack }));   
+};
+
