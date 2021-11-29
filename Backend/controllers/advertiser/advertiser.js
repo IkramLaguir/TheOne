@@ -70,3 +70,11 @@ exports.create =  async(req, res, next) => {
         .catch(error => sendError(res ,{ 'error': error.stack }));   
 };
 
+// Get all advert of an advertiser
+exports.getAdvert =  async(req, res, next) => {
+    const advertiserId = req.body.advertiserId;
+
+    Advert.find({advertiser : advertiserId})
+        .then(data => sendMessage(res,data))
+        .catch(error => sendError(res, { 'error': error.stack  }));
+};

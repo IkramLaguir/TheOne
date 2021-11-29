@@ -25,19 +25,3 @@ userSchema.plugin(uniqueValidator);
 const user = mongoose.model('User', userSchema);
 
 module.exports = user;
-
-
-
-
-
-
-
-// var authorSchema = Schema({
-//     name    : String,
-//     stories : [{ type: Schema.Types.ObjectId, ref: 'Story' }]
-//   });
-  
-//   var storySchema = Schema({
-//     author : { type: Schema.Types.ObjectId, ref: 'Author' },
-//     title    : String
-//   });

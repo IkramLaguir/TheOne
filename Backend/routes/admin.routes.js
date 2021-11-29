@@ -25,7 +25,10 @@ module.exports = app =>{
         adminCtrl.login(req,res); 
     });
 
-    //app.post('/annonceur', auth ,(req, res) => { userCtrl.login(req,res); });
-
+    router.get('/getAdvert', (req, res) => { 
+        adminCtrl.getAdvert(req,res); 
+    });
+    
+    
     app.use('/api/admin',router);
 }
