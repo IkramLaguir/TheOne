@@ -29,6 +29,11 @@ module.exports = app =>{
         adminCtrl.getAdvert(req,res); 
     });
     
-    
+    router.post('/updateAdvert', (req, res) => { 
+        adminCtrl.updateAdvert(req,res); 
+    });
+
+
+
     app.use('/api/admin',router);
 }
