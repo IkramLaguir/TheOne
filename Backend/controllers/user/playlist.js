@@ -43,7 +43,7 @@ exports.playlists = (req,res,next)=> {
 
 //del a playlist
 exports.deletePlaylist = (req,res,next) =>{
-    const playlistId = req.body.playlistId;
+    const playlistId = req.params.playlistId;
     Playlist.deleteOne({_id : playlistId})
         .then(() => sendMessage(res,{ message: 'Playlist supprimée !' }))
         .catch(error => sendError(res, { 'error': error.stack  }));
@@ -74,9 +74,9 @@ exports.addVideo = (req,res,next) =>{
 
 //Get all videos of a playlist
 exports.videos = (req,res,next)=> {
-    const userId = req.body.userId;
-    const playlistId = req.body.playlistId;
-    Playlist.find({user : userId,_id : playlistId})
+    //const userId = req.body.userId;
+    const playlistId = req.params.playlistId;
+    Playlist.find({_id : playlistId})
         .then(data => sendMessage(res,data))
         .catch(error => sendError(res, { 'error': error.stack  }));
 }

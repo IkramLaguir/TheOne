@@ -41,5 +41,14 @@ export class MessageService {
 
   }
 
+  deletePlaylist(playlistId : any): Observable<Data>{
+    const adr : string = environment.url +'/deletePlaylist/' + playlistId ;
+    return this.http.delete<Data>(adr, { withCredentials: true });
+  }
+
+  getAllVideos(playlistId : any):Observable<Data>{
+    const adr : string = environment.url + '/videos/'+ playlistId;
+    return this.http.get<Data>(adr, { withCredentials: true });
+  }
 
 }

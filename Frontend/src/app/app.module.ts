@@ -22,6 +22,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SeConnecterComponent} from "./se-connecter/se-connecter.component";
 import { MatSelectModule } from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { AfficherPlaylistComponent } from './afficher-playlist/afficher-playlist.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
     AjoutPlaylistComponent,
     InscriptionComponent,
     SeConnecterComponent,
+    AfficherPlaylistComponent,
 
 
   ],

@@ -59,7 +59,7 @@ export class SeConnecterComponent implements OnInit {
     if (this.auth.isLoggedIn) {
       this.errorMessage = '';
       if (this.auth.redirectUrl == '') {
-        this.route.navigateByUrl('/admin');
+        this.route.navigateByUrl('/');
       } else {
         this.route.navigateByUrl(this.auth.redirectUrl);
       }

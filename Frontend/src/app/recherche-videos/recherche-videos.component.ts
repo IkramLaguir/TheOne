@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MessageService} from "../message/message.service";
+import {AuthService} from "../auth/auth.service";
 
 @Component({
   selector: 'app-recherche-videos',
@@ -11,7 +12,7 @@ export class RechercheVideosComponent implements OnInit {
   userId = sessionStorage.getItem("userId");
   playlists : any[] = [];
 
-  constructor(private message : MessageService) { }
+  constructor(private message : MessageService, public auth : AuthService ) { }
 
   ngOnInit(): void {
     this.message.getAllPlaylist(this.userId).subscribe({

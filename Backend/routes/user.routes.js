@@ -41,7 +41,7 @@ module.exports = app =>{
     });
 
     //Get all playlist of a user
-    router.get('/videos', (req, res) => { 
+    router.get('/videos/:playlistId', (req, res) => {
         playlistCtrl.videos(req,res); 
     });
 
@@ -51,7 +51,7 @@ module.exports = app =>{
     });
 
     // Delete a playlist
-    router.delete('/deletePlaylist', (req, res) => { 
+    router.delete('/deletePlaylist/:playlistId', (req, res) => {
         playlistCtrl.deletePlaylist(req,res); 
     });
 

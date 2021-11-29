@@ -6,6 +6,7 @@ import {RechercheVideosComponent} from "./recherche-videos/recherche-videos.comp
 import {MesPlaylistsComponent} from "./mes-playlists/mes-playlists.component";
 import {SeConnecterComponent} from "./se-connecter/se-connecter.component";
 import {InscriptionComponent} from "./inscription/inscription.component";
+import {AfficherPlaylistComponent} from "./afficher-playlist/afficher-playlist.component";
 
 const routes: Routes = [
   { path: 'accueil', component: AccueilComponent},
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'lecture', component: LectureVideoComponent},
   { path: 'connect', component: SeConnecterComponent},
   { path: 'inscription', component: InscriptionComponent},
+  { path: 'afficher/:id', component:AfficherPlaylistComponent},
   { path: '', component: AccueilComponent},
 
 

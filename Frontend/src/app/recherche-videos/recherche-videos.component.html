@@ -1,7 +1,7 @@
 <div class="row row-cols-2">
 <div *ngFor="let video of videos">
 <mat-card class="card-video">
-  <button mat-button [matMenuTriggerFor]="menu" color="primary">Ajouter à la playlist</button>
+  <button mat-button [matMenuTriggerFor]="menu" color="primary" *ngIf="auth.test()">Ajouter à la playlist</button>
   <mat-menu #menu="matMenu">
     <div *ngFor="let playlist of playlists">
     <button mat-menu-item (click)="addVideo(playlist._id, video)">{{playlist.name}}</button>
@@ -9,7 +9,6 @@
     <br/>
   </mat-menu>
   <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
     <mat-card-title>{{video.createur}}{{video.titre}}</mat-card-title>
     <mat-card-subtitle>{{video.description}}</mat-card-subtitle>
   </mat-card-header>
