@@ -30,6 +30,9 @@ module.exports = app =>{
         advertiserCtrl.create(req,res); 
     });
     
+    router.get('/getAdvert',(req, res) => { 
+        advertiserCtrl.getAdvert(req,res); 
+    });
 
 
 

@@ -11,14 +11,13 @@ const playlistSchema = new mongoose.Schema({
         titre : {type: String, required: false},
         url : {type: String, required: false}
       }
-    ]//{type: [Object], required: false},
+    ]
   },
   { 
     timestamps: true 
   }
 
 );
-
 
 const Playlist = mongoose.model('PlaylistUser', playlistSchema);
 module.exports = Playlist

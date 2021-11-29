@@ -9,7 +9,6 @@ db.uri = dbConfig.uri;
 
 
 db.user = require('./user/user');//(mongoose)
-db.infoUser = require('./user/infoUser');//(mongoose)
 db.playlist = require('./user/playlist');
 
 

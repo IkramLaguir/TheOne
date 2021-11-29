@@ -2,6 +2,7 @@
 const db = require('../../models/index')
 
 const Admin = db.admin
+const Advert = db.advert
 
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
@@ -57,3 +58,16 @@ exports.login = (req, res, next) => {
 };
 
 
+// Get all advert 
+exports.getAdvert =  async(req, res, next) => {
+    Advert.find()
+        .then(data => sendMessage(res,data))
+        .catch(error => sendError(res, { 'error': error.stack  }));
+};
+
+// Update the status of an advert
+exports.updateAdvert =  async(req, res, next) => {
+    Advert.findByIdAndUpdate(req.body.advertId, {status:req.body.status})
+        .then(() => sendMessage(res,{ message: 'Status changé !' }))
+        .catch(error => sendError(res, { 'error': error.stack  }));
+};

@@ -23,28 +23,13 @@ exports.signup =  (req, res, next) => {
                     date_of_birth : req.body.dateOfBirth,
                     interest : req.body.interest,
                 }
-
             }
 
             const userModel = new User(user);
             
             await userModel.save()
                 .then(() => sendMessage(res,{ message: 'Utilisateur créé !' }))
-                .catch(error => sendError(res ,{ 'error': error.stack }));
-                
-
-            // const infoUser = new InfoUser({
-            //     user_name : req.body.userName,
-            //     pays : req.body.pays,
-            //     date_of_birth : req.body.dateOfBirth,
-            //     interest : req.body.interest,
-            //     user : userModel._id
-            // })
-
-            // await infoUser.save()
-            //     .then(() => sendMessage(res,{ message: 'Utilisateur créé !' }))
-            //     .catch(error => sendError(res, { 'error': error.stack  }));
-
+                .catch(error => sendError(res ,{ 'error': error.stack }));       
         })
         .catch(error => sendError(res ,{ 'error': error.stack }));        
 };
@@ -69,8 +54,6 @@ exports.login = (req, res, next) => {
                         { expiresIn: '24h' }
                         )
                 });
-                //req.auth = {userId: user._id}
-                //res.header('Authorization', 'Bearer ' + token);
             })
             .catch(error => sendError(res, { error }));
         })
