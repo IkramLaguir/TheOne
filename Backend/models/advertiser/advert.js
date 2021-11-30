@@ -8,7 +8,7 @@ const advertSchema = new Schema({
     title: { type: String, required: true},
     minAge: { type: String, required: true},
     country: { type: String, required: true},
-    category:{type: [String], required: true, unique:true},
+    category:{type: [String], required: true},
     text: { type: String, required: true},
     status : { type: String, required: true}
     },
