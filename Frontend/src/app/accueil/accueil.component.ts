@@ -45,7 +45,7 @@ export class AccueilComponent implements OnInit {
             description : res.items[i].snippet.description,
             createur : res.items[i].snippet.channelTitle
           };
-          console.log(this.liste[i]);
+          console.log(this.liste);
 
         }
       });

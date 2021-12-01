@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {DataVideoService} from "../dataVideo/data-video.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-lecture-video',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LectureVideoComponent implements OnInit {
 
-  constructor() { }
+  subscription: Subscription;
+  msg: string = '';
+
+  constructor(public dataService : DataVideoService) { }
 
   ngOnInit(): void {
+    this.subscription = this.dataService.currentMessage.subscribe(
+      message =>{
+        this.msg = message,
+          console.log(this.msg)
+      });
   }
+
+
+
 
 }

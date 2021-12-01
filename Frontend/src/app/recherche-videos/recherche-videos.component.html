@@ -1,5 +1,5 @@
 <div class="row row-cols-2">
-<div *ngFor="let video of videos">
+<div *ngFor="let video of videos let index = index" >
 <mat-card class="card-video">
   <button mat-button [matMenuTriggerFor]="menu" color="primary" *ngIf="auth.test()">Ajouter à la playlist</button>
   <mat-menu #menu="matMenu">
@@ -19,9 +19,9 @@
   </mat-card-content>
   <mat-card-actions>
     <a mat-button href="{{video.url}}" target="_blank">Link</a>
+    <a mat-button class="btn btn-info"  (click)="openVideo(index)">Ouvrir
+    </a>
   </mat-card-actions>
 </mat-card>
-
-
 </div>
 </div>

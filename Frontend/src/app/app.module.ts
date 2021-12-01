@@ -37,7 +37,6 @@ import { AfficherPlaylistComponent } from './afficher-playlist/afficher-playlist
     SeConnecterComponent,
     AfficherPlaylistComponent,
 
-
   ],
   imports: [
     BrowserModule,
