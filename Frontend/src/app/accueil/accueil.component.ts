@@ -40,16 +40,18 @@ export class AccueilComponent implements OnInit {
       .then((res) => {
         for (let i = 0 ; i < res.items.length ; i++){
           this.liste[i] = {
+            videoId : res.items[i].id.videoId,
             url : `https://www.youtube.com/watch?v=${res.items[i].id.videoId}`,
             titre : res.items[i].snippet.title,
             description : res.items[i].snippet.description,
-            createur : res.items[i].snippet.channelTitle
+            createur : res.items[i].snippet.channelTitle,
           };
-          console.log(this.liste);
-
         }
+        console.log(this.liste)
       });
   }
+
+
 
 
 }

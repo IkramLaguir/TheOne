@@ -23,6 +23,7 @@ import {SeConnecterComponent} from "./se-connecter/se-connecter.component";
 import { MatSelectModule } from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { AfficherPlaylistComponent } from './afficher-playlist/afficher-playlist.component';
+import { YouTubePlayerModule} from "@angular/youtube-player";
 
 
 @NgModule({
@@ -57,6 +58,7 @@ import { AfficherPlaylistComponent } from './afficher-playlist/afficher-playlist
     ReactiveFormsModule,
     MatSelectModule,
     MatFormFieldModule,
+    YouTubePlayerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

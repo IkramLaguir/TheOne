@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {DataVideoService} from "../dataVideo/data-video.service";
 import {Subscription} from "rxjs";
+import {AuthService} from "../auth/auth.service";
+import {MessageService} from "../message/message.service";
 
 @Component({
   selector: 'app-lecture-video',
@@ -9,18 +11,41 @@ import {Subscription} from "rxjs";
 })
 export class LectureVideoComponent implements OnInit {
 
+  userId = sessionStorage.getItem("userId");
+  playlists : any[] = [];
   subscription: Subscription;
-  msg: string = '';
+  video: any;
 
-  constructor(public dataService : DataVideoService) { }
+  constructor(public dataService : DataVideoService, public auth : AuthService, private message : MessageService) { }
 
   ngOnInit(): void {
     this.subscription = this.dataService.currentMessage.subscribe(
-      message =>{
-        this.msg = message,
-          console.log(this.msg)
+      value =>{
+        this.video = value,
+          console.log(this.video)
       });
+    this.message.getAllPlaylist(this.userId).subscribe({
+      next: (value) => {
+        this.playlists = value.data;
+      },
+    });
   }
+  addVideo(playlistId : any, video : any): void{
+    console.log(playlistId);
+    const obj : Object = {
+      playlistId : playlistId,
+      list : video
+    }
+
+    this.message.addVideo(obj).subscribe({
+      next: (value) => {
+        console.log(value.data)
+      }
+    });
+
+  }
+
+
 
 
 

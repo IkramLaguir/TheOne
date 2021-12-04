@@ -23,7 +23,6 @@ export class RechercheVideosComponent implements OnInit {
   ngOnInit(): void {
     this.message.getAllPlaylist(this.userId).subscribe({
       next: (value) => {
-        console.log(value.data)
         this.playlists = value.data;
       },
     });
