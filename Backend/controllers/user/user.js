@@ -3,6 +3,7 @@ const db = require('../../models/index')
 
 const User = db.user
 //const InfoUser = db.infoUser
+const Advert = db.advert
 
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
@@ -59,3 +60,21 @@ exports.login = (req, res, next) => {
         })
         .catch(error => sendError(res, { error }));
 };
+
+
+//Get an Advert 
+exports.getAdvert = (req,res,next)=> {
+    const userId = req.body.userId;
+    User.findOne({_id : userId}).select({info :1})
+        .then(data =>{ 
+            data = data.info;
+            const date = new Date(data.date_of_birth)
+            age = Math.floor((Date.now() - date.getTime()) / (1000 * 3600 * 24 * 365));
+            const interest = data.interest; 
+            Advert.findOne({minAge:{$lte:age}, categorie:{$in:interest},status:"Accepté"})
+                .then(data => sendMessage(res,data))
+                .catch(error => sendError(res, { 'error': error.stack  })); 
+        }) 
+        .catch(error => sendError(res, { 'error': error.stack  }));
+    
+}

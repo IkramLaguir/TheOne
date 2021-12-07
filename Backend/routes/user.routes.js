@@ -55,5 +55,11 @@ module.exports = app =>{
         playlistCtrl.deletePlaylist(req,res); 
     });
 
+
+    //Get all playlist of a user
+    router.get('/advert', (req, res) => { 
+        userCtrl.getAdvert(req,res); 
+    });
+
     app.use('/api/user',router);
 }

@@ -19,6 +19,10 @@ const userSchema = new Schema({
   } 
 );
 
+userSchema.virtual('age').get(function(){
+  return Math.floor((Date.now() - this.info.date_of_birth.getTime()) / (1000 * 3600 * 24 * 365));
+});
+
 userSchema.plugin(uniqueValidator);
 
 
