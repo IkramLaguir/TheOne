@@ -38,8 +38,9 @@ export class AccueilComponent implements OnInit {
     )
       .then((res) => res.json())
       .then((res) => {
+        let tab = [];
         for (let i = 0 ; i < res.items.length ; i++){
-          this.liste[i] = {
+          tab[i] = {
             videoId : res.items[i].id.videoId,
             url : `https://www.youtube.com/watch?v=${res.items[i].id.videoId}`,
             titre : res.items[i].snippet.title,
@@ -48,6 +49,7 @@ export class AccueilComponent implements OnInit {
           };
         }
         console.log(this.liste)
+        this.liste = tab;
       });
   }
 

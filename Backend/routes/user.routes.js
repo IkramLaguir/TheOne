@@ -56,9 +56,13 @@ module.exports = app =>{
     });
 
 
-    //Get all playlist of a user
-    router.get('/advert', (req, res) => { 
+    //Get advert
+    router.get('/advert/:userId', (req, res) => {
         userCtrl.getAdvert(req,res); 
+    });
+
+    router.get('/advert', (req, res) => {
+        userCtrl.getAdvertNoConnected(req,res);
     });
 
     app.use('/api/user',router);

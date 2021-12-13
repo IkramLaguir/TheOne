@@ -34,21 +34,27 @@ export class MessageService {
     const adr : string = environment.url + '/playlists/'+ userId;
     return this.http.get<Data>(adr, { withCredentials: true });
   }
-
+  // Ajouter une vidéo à une playlist
   addVideo(obj: any): Observable<Data>{
     const adr : string = environment.url +'/addVideo'
     return this.http.post<Data>(adr, obj, { withCredentials: true });
 
   }
-
+  // Supprimer une playlist
   deletePlaylist(playlistId : any): Observable<Data>{
     const adr : string = environment.url +'/deletePlaylist/' + playlistId ;
     return this.http.delete<Data>(adr, { withCredentials: true });
   }
-
+  // Récupérer toutes les vidéos ajoutées dans une playlist
   getAllVideos(playlistId : any):Observable<Data>{
     const adr : string = environment.url + '/videos/'+ playlistId;
     return this.http.get<Data>(adr, { withCredentials: true });
   }
 
+  // Récupérer les adverts
+
+  getAdvert(userId : any):Observable<Data>{
+    const adr : string = environment.url + '/advert/'+ userId;
+    return this.http.get<Data>(adr, { withCredentials: true });
+  }
 }

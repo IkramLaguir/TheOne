@@ -8,6 +8,7 @@ const Advert = db.advert
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
 
+
 const {sendError, sendMessage} = require ("../../message");
 
 exports.signup =  (req, res, next) => {
@@ -62,19 +63,39 @@ exports.login = (req, res, next) => {
 };
 
 
-//Get an Advert 
+//Get an Advert when the user is loggedIn
 exports.getAdvert = (req,res,next)=> {
-    const userId = req.body.userId;
+    const userId = req.params.userId;
     User.findOne({_id : userId}).select({info :1})
-        .then(data =>{ 
+        .then(data =>{
             data = data.info;
             const date = new Date(data.date_of_birth)
             age = Math.floor((Date.now() - date.getTime()) / (1000 * 3600 * 24 * 365));
             const interest = data.interest; 
-            Advert.findOne({minAge:{$lte:age}, categorie:{$in:interest},status:"Accepté"})
+            Advert.find({minAge:{$lte:age}, categorie:{$in:interest},status:"Accepté"})
                 .then(data => sendMessage(res,data))
                 .catch(error => sendError(res, { 'error': error.stack  })); 
         }) 
         .catch(error => sendError(res, { 'error': error.stack  }));
-    
+
 }
+
+// Get an advert when the user is not logged In
+
+exports.getAdvertNoConnected = (req,res,next)=> {
+    Advert.find().select({_id :1})
+        .then(data => {
+            const tmp = data[Math.floor(Math.random()*data.length)];
+            Advert.findById(tmp["_id"]).select({text :1})
+                .then(data => sendMessage(res,data))
+                .catch(error => sendError(res ,{ 'error': error.stack }));
+
+        })
+        .catch(error => sendError(res, { 'error': error.stack  }));
+
+
+
+}
+
+
+
