@@ -10,7 +10,8 @@ const advertSchema = new Schema({
     country: { type: String, required: true},
     category:{type: [String], required: true},
     text: { type: String, required: true},
-    status : { type: String, required: true}
+    status : { type: String, required: true},
+    nbOfVues: {type: Number, default: 0},
     },
     { 
         timestamps: true 

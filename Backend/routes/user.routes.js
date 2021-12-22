@@ -60,6 +60,7 @@ module.exports = app =>{
     router.get('/advert/:userId', (req, res) => {
         userCtrl.getAdvert(req,res); 
     });
+    
 
     router.get('/advert', (req, res) => {
         userCtrl.getAdvertNoConnected(req,res);

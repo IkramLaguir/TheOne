@@ -72,8 +72,13 @@ exports.getAdvert = (req,res,next)=> {
             const date = new Date(data.date_of_birth)
             age = Math.floor((Date.now() - date.getTime()) / (1000 * 3600 * 24 * 365));
             const interest = data.interest; 
-            Advert.find({minAge:{$lte:age}, categorie:{$in:interest},status:"Accepté"})
-                .then(data => sendMessage(res,data))
+            Advert.find({minAge:{$lte:age}, categorie:{$in:interest},status:"Accepté"}).select({_id :1})
+                .then(data => {
+                    const tmp = data[Math.floor(Math.random()*data.length)];
+                    Advert.findOneAndUpdate({ _id:tmp["_id"]},{ $inc: {'nbOfVues': 1 } }).select({text :1})
+                        .then(data => sendMessage(res,data))
+                        .catch(error => sendError(res ,{ 'error': error.stack }));
+                })
                 .catch(error => sendError(res, { 'error': error.stack  })); 
         }) 
         .catch(error => sendError(res, { 'error': error.stack  }));
@@ -83,10 +88,10 @@ exports.getAdvert = (req,res,next)=> {
 // Get an advert when the user is not logged In
 
 exports.getAdvertNoConnected = (req,res,next)=> {
-    Advert.find().select({_id :1})
+    Advert.find({status:"Accepté"}).select({_id :1})
         .then(data => {
             const tmp = data[Math.floor(Math.random()*data.length)];
-            Advert.findById(tmp["_id"]).select({text :1})
+            Advert.findOneAndUpdate({ _id:tmp["_id"]},{ $inc: {'nbOfVues': 1 } }).select({text :1})
                 .then(data => sendMessage(res,data))
                 .catch(error => sendError(res ,{ 'error': error.stack }));
 
