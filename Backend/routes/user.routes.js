@@ -46,7 +46,7 @@ module.exports = app =>{
     });
 
     //Delete a video from a playlist
-    router.delete('/deleteVideo', (req, res) => { 
+    router.delete('/deleteVideo/:playlistId/:videoId', (req, res) => {
         playlistCtrl.deleteVideo(req,res); 
     });
 

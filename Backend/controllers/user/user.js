@@ -72,7 +72,7 @@ exports.getAdvert = (req,res,next)=> {
             const date = new Date(data.date_of_birth)
             age = Math.floor((Date.now() - date.getTime()) / (1000 * 3600 * 24 * 365));
             const interest = data.interest; 
-            Advert.find({minAge:{$lte:age}, categorie:{$in:interest},status:"Accepté"})
+            Advert.find({minAge:{$lte:age}, categorie:{$in:interest},status:"Accepté"}).select({text :1})
                 .then(data => sendMessage(res,data))
                 .catch(error => sendError(res, { 'error': error.stack  })); 
         }) 
