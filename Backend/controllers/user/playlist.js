@@ -26,10 +26,10 @@ exports.create =  async(req, res, next) => {
         playlist.list_video = req.body.list;
     }
     const playlistModel = new Playlist(playlist);
-    
+
     await playlistModel.save()
         .then(() => sendMessage(res,{ message: 'Playlist créé !' }))
-        .catch(error => sendError(res ,{ 'error': error.stack }));   
+        .catch(error => sendError(res ,{ 'error': error.stack }));
 };
 
 
@@ -96,7 +96,5 @@ exports.deleteVideo = (req,res,next) =>{
         await data.save() //listVideo.findByIdAndRemove(videoId)
             .then(() => sendMessage(res,{ message: 'Video supprimée !' }))
             .catch(error => sendError(res, { 'error': error.stack  }));
-    })  
+    })
 }
-
-

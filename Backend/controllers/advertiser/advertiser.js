@@ -71,10 +71,25 @@ exports.create =  async(req, res, next) => {
 };
 
 // Get all advert of an advertiser
-exports.getAdvert =  async(req, res, next) => {
-    const advertiserId = req.body.advertiserId;
+exports.getAdvert = async (req, res, next) => {
+    const advertiserId = req.params.id;
+    Advert.find({ advertiser: advertiserId })
+        .then((data) => sendMessage(res, data))
+        .catch((error) => sendError(res, { error: error.stack }));
+};
 
-    Advert.find({advertiser : advertiserId})
-        .then(data => sendMessage(res,data))
-        .catch(error => sendError(res, { 'error': error.stack  }));
+// Get one advert of an advertiser
+exports.getOneAdvert = async (req, res, next) => {
+    const advertId = req.params.id;
+    Advert.find({ _id: advertId })
+        .then((data) => sendMessage(res, data))
+        .catch((error) => sendError(res, { error: error.stack }));
+};
+
+// Get one advert of an advertiser
+exports.deleteOneAdvert = async (req, res, next) => {
+    const advertId = req.params.id;
+    Advert.deleteOne({ _id: advertId })
+        .then((data) => sendMessage(res, data))
+        .catch((error) => sendError(res, { error: error.stack }));
 };

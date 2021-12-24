@@ -1,0 +1,99 @@
+<div class="container">
+  <h3 class="title">Ajouter une annonce</h3>
+
+  <form class="form">
+    <mat-form-field class="input" appearance="fill">
+      <mat-label>Titre</mat-label>
+      <input
+        type="text"
+        matInput
+        [formControl]="titleFormControl"
+        [(ngModel)]="title"
+      />
+      <mat-error *ngIf="!titleFormControl.hasError('required')">
+        Veuillez saisir le titre de l'annonce
+      </mat-error>
+      <mat-error *ngIf="titleFormControl.hasError('required')">
+        Le titre est <strong>requis</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input" appearance="fill">
+      <mat-label>Âge</mat-label>
+      <input
+        type="number"
+        matInput
+        [formControl]="ageFormControl"
+        [(ngModel)]="age"
+      />
+      <mat-error *ngIf="!ageFormControl.hasError('required')">
+        Veuillez saisir l'âge cible
+      </mat-error>
+      <mat-error *ngIf="ageFormControl.hasError('required')">
+        L'age est <strong>requis</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input" appearance="fill">
+      <mat-label>Pays</mat-label>
+      <mat-select
+        [(ngModel)]="country"
+        [formControl]="countryFormControl"
+        name="country"
+      >
+        <mat-option *ngFor="let country of CountryList" [value]="country.value">
+          {{ country.value }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="!countryFormControl.hasError('required')">
+        Veuillez saisir le pays cible
+      </mat-error>
+      <mat-error *ngIf="countryFormControl.hasError('required')">
+        Le pays est <strong>requis</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input" appearance="fill">
+      <mat-label>Catégorie</mat-label>
+      <mat-select
+        [(ngModel)]="category"
+        [formControl]="categoryFormControl"
+        name="category"
+      >
+        <mat-option
+          *ngFor="let category of CategoryList"
+          [value]="category.value"
+        >
+          {{ category.value }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="!categoryFormControl.hasError('required')">
+        Veuillez saisir une catégorie
+      </mat-error>
+      <mat-error *ngIf="ageFormControl.hasError('required')">
+        La catégorie est <strong>requise</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="input" appearance="fill">
+      <mat-label>Texte</mat-label>
+
+      <textarea
+        matInput
+        type="text"
+        [formControl]="detailsFormControl"
+        [(ngModel)]="details"
+      ></textarea>
+      <mat-error *ngIf="!detailsFormControl.hasError('required')">
+        Veuillez saisir le détail de l'annonce
+      </mat-error>
+      <mat-error *ngIf="detailsFormControl.hasError('required')">
+        Le détail est <strong>requis</strong>
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-flat-button color="primary" (click)="saveNewAnnonce()">
+      Ajouter l'annonce
+    </button>
+  </form>
+</div>
