@@ -44,7 +44,7 @@ exports.login = (req, res, next) => {
                     return sendError(res, { error: 'Mot de passe incorrect !' });
                 }
                 sendMessage(res,{
-                    adminId: Admin._id,
+                    adminId: admin._id,
                     token: jwt.sign(
                         { adminId: admin._id },
                         'RANDOM_TOKEN_SECRET',
@@ -70,4 +70,11 @@ exports.updateAdvert =  async(req, res, next) => {
     Advert.findByIdAndUpdate(req.body.advertId, {status:req.body.status})
         .then(() => sendMessage(res,{ message: 'Status changé !' }))
         .catch(error => sendError(res, { 'error': error.stack  }));
+};
+// Get one advert of an advertiser
+exports.getOneAdvert = async (req, res, next) => {
+    const advertId = req.params.id;
+    Advert.find({ _id: advertId })
+        .then((data) => sendMessage(res, data))
+        .catch((error) => sendError(res, { error: error.stack }));
 };
