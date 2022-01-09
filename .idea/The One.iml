@@ -10,5 +10,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="MarseilleEat" />
     <orderEntry type="module" module-name="PolystagesAngular" />
+    <orderEntry type="module" module-name="Erwan" />
   </component>
 </module>

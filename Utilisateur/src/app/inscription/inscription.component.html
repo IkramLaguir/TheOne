@@ -2,9 +2,8 @@
   <form class="form">
     <mat-form-field class="input" appearance="fill">
       <mat-label>Username</mat-label>
-      <input matInput required>
+      <input matInput required [(ngModel)]="userName" name="userName">
     </mat-form-field>
-
 
     <mat-form-field class="input" appearance="fill">
       <mat-label>Email</mat-label>
@@ -13,6 +12,7 @@
         matInput
         [formControl]="emailFormControl"
         [(ngModel)]="email"
+        name="email"
       />
       <mat-error
         *ngIf="
@@ -35,6 +35,7 @@
         matInput
         [formControl]="passwordFormControl"
         [(ngModel)]="password"
+        name="password"
       />
       <mat-error *ngIf="!passwordFormControl.hasError('required')">
         Veuillez saisir votre mot de passe
@@ -43,26 +44,55 @@
         Le mot de passe est <strong>requis</strong>
       </mat-error>
     </mat-form-field>
-
-    <mat-form-field class= "categorie" appearance="fill" >
-      <mat-label>Categorie</mat-label>
-      <mat-select>
-        <mat-option value="one">Musique</mat-option>
-        <mat-option value="two">Sport</mat-option>
-        <mat-option value="three">Film</mat-option>
-        <mat-option value="four">Beauté</mat-option>
-
-
+    <mat-form-field class="input" appearance="fill">
+      <mat-label>Pays</mat-label>
+      <mat-select
+        [(ngModel)]="country"
+        [formControl]="countryFormControl"
+        name="country"
+      >
+        <mat-option *ngFor="let country of CountryList" [value]="country.value">
+          {{ country.value }}
+        </mat-option>
       </mat-select>
+      <mat-error *ngIf="!countryFormControl.hasError('required')">
+        Veuillez saisir le pays cible
+      </mat-error>
+      <mat-error *ngIf="countryFormControl.hasError('required')">
+        Le pays est <strong>requis</strong>
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field class="input" appearance="fill">
+      <mat-label>Catégorie</mat-label>
+      <mat-select
+        [(ngModel)]="interest"
+        [formControl]="interestFormControl"
+        name="category"
+      >
+        <mat-option
+          *ngFor="let interest of InterestList"
+          [value]="interest.value"
+        >
+          {{ interest.value }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="!interestFormControl.hasError('required')">
+        Veuillez saisir une catégorie
+      </mat-error>
     </mat-form-field>
 
-
-
+    <mat-form-field class="input" appearance="fill">
+      <mat-label>Date de naissance</mat-label>
+      <input matInput [matDatepicker]="dateOfBirth" [(ngModel)]="dateOfBirth" name="date">
+      <mat-datepicker-toggle matSuffix [for]="dateOfBirth">
+      </mat-datepicker-toggle>
+      <mat-datepicker></mat-datepicker>
+    </mat-form-field>
   </form>
 
-  <a mat-button  class="btn btn-info" >Retour</a>
+  <a mat-button  class="btn btn-info" (click)="retour()">Retour</a>
   <!---To do add la fonction pour valider-->
-  <button mat-flat-button color="primary">
+  <button mat-flat-button color="primary" (click)="inscrire()">
   Valider
   </button>
 

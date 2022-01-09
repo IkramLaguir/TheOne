@@ -27,6 +27,12 @@ export class MessageService {
     return this.http.post<Data>(adr, data, { withCredentials: true });
   }
 
+  // Inscription
+  signup(data: any): Observable<Data> {
+    const adr: string = environment.url +'/signup';
+    return this.http.post<Data>(adr, data, { withCredentials: true });
+  }
+
   // afficher les playlists créés par l'utilisateur
 
   getAllPlaylist(userId : any):Observable<Data>{

@@ -24,13 +24,13 @@
     <!-- CreationDate Column -->
     <ng-container matColumnDef="creationDate">
       <th mat-header-cell *matHeaderCellDef>Date de création</th>
-      <td mat-cell *matCellDef="let element">{{ element.createdAt }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.createdAt | date: "dd/MM/yyyy"}}</td>
     </ng-container>
 
     <!-- LastModif Column -->
     <ng-container matColumnDef="lastModif">
       <th mat-header-cell *matHeaderCellDef>Date de dernière modification</th>
-      <td mat-cell *matCellDef="let element">{{ element.updatedAt }}</td>
+      <td mat-cell *matCellDef="let element">{{ element.updatedAt | date: "dd/MM/yyyy"}}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

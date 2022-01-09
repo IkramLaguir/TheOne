@@ -24,7 +24,8 @@ import { MatSelectModule } from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { AfficherPlaylistComponent } from './afficher-playlist/afficher-playlist.component';
 import { YouTubePlayerModule} from "@angular/youtube-player";
-
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from "@angular/material/core";
 
 @NgModule({
   declarations: [AppComponent,
@@ -59,6 +60,9 @@ import { YouTubePlayerModule} from "@angular/youtube-player";
     MatSelectModule,
     MatFormFieldModule,
     YouTubePlayerModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

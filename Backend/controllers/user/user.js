@@ -26,7 +26,7 @@ exports.signup =  (req, res, next) => {
                     interest : req.body.interest,
                 }
             }
-
+            console.log(user);
             const userModel = new User(user);
 
             await userModel.save()
