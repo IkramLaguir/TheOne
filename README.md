@@ -5,15 +5,15 @@
 L'application est codée en Angular, NodeJS et MongoDb. 
 Pour démarrer l'application :
 
-	-Il faut installer node.js et npm install. 
-	-Il est nécéssaire aussi d'avoir la commande docker-compose pour exécuter l'application sur docker.
+	- Il faut installer node.js et npm install. 
+	- Pour démarrer le backend, utiliser la commande nodemon start
+	- Pour démarrer le frontend, utiliser la commande npm start
 
-# Utilisation sans docker 
 
 Il faut ensuite adapter la configuration du backend. Il faut  modifier le fichier config.js qui se trouve dans les dossier TheOne/backend.
 
 Il faut que l'host soit sur localhost, définir l'user et le mot de passe du logiciel (par défaut c'est root).
-Ensuite, il faut se placer dans les dossiers backend afin d'installer les dépendances avec la commande npm install, puis npm start pour démarrer le backend. Celui-ci démarre sur le port 3000.
+Ensuite, il faut se placer dans les dossiers backend afin d'installer les dépendances avec la commande npm install, puis nodemon start pour démarrer le backend. Celui-ci démarre sur le port 3000.
 
 Ensuite, il faut se placer dans le dossier du frontend souhaité(utilisateur, annonceur ou administrateur) afin de faire la commande npm install pour installer les dépendances puis npm start pour démarrer le frontend à l'adresse: https://localhost:4200.
 
