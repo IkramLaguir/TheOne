@@ -22,7 +22,7 @@ module.exports = app =>{
         adminCtrl.login(req,res); 
     });
 
-    router.get('/getAdvert', (req, res) => { 
+    router.get('/getAdvert/:id', (req, res) => {
         adminCtrl.getAdvert(req,res); 
     });
     
@@ -30,6 +30,9 @@ module.exports = app =>{
         adminCtrl.updateAdvert(req,res); 
     });
 
+    router.get('/ad/:id', (req, res) => {
+        adminCtrl.getOneAdvert(req, res);
+    });
 
 
     app.use('/api/admin',router);

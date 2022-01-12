@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope&display=swap');
+
+.card-video{
+  height: 400px;
+  width: 700px;
+  margin: 0 auto;
+}
+html,
+body {
+  height: 100%
+}
+
+* {
+  padding: 0px;
+  margin: 0px
+}
+
+body {
+  background-color: #dde3fb;
+  display: grid;
+  place-items: center
+}
+
+.card {
+  margin: 0 auto;
+  height: 150px;
+  width: 400px;
+  background-color: #222222;
+  border-radius: 10px;
+  font-family: 'Manrope', sans-serif
+}
+
+

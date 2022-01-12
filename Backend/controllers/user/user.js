@@ -23,38 +23,38 @@ exports.signup =  (req, res, next) => {
                     interest : req.body.interest,
                 }
             }
-
+            console.log(user);
             const userModel = new User(user);
-            
+
             await userModel.save()
                 .then(() => sendMessage(res,{ message: 'Utilisateur créé !' }))
-                .catch(error => sendError(res ,{ 'error': error.stack }));       
+                .catch(error => sendError(res ,{ 'error': error.stack }));
         })
-        .catch(error => sendError(res ,{ 'error': error.stack }));        
+        .catch(error => sendError(res ,{ 'error': error.stack }));
 };
 
 
 exports.login = (req, res, next) => {
     User.findOne({ email: req.body.email })
         .then(user => {
-        if (!user) {
-            return sendError(res, { error: 'Utilisateur non trouvé !' });
-        }
-        bcrypt.compare(req.body.password, user.password)
-            .then(valid => {
-                if (!valid) {
-                    return sendError(res, { error: 'Mot de passe incorrect !' });
-                }
-                sendMessage(res,{
-                    userId: user._id,
-                    token: jwt.sign(
-                        { userId: user._id },
-                        'RANDOM_TOKEN_SECRET',
-                        { expiresIn: '24h' }
+            if (!user) {
+                return sendError(res, { error: 'Utilisateur non trouvé !' });
+            }
+            bcrypt.compare(req.body.password, user.password)
+                .then(valid => {
+                    if (!valid) {
+                        return sendError(res, { error: 'Mot de passe incorrect !' });
+                    }
+                    sendMessage(res,{
+                        userId: user._id,
+                        token: jwt.sign(
+                            { userId: user._id },
+                            'RANDOM_TOKEN_SECRET',
+                            { expiresIn: '24h' }
                         )
-                });
-            })
-            .catch(error => sendError(res, { error }));
+                    });
+                })
+                .catch(error => sendError(res, { error }));
         })
         .catch(error => sendError(res, { error }));
 };
@@ -68,7 +68,7 @@ exports.getAdvert = (req,res,next)=> {
             data = data.info;
             const date = new Date(data.date_of_birth)
             age = Math.floor((Date.now() - date.getTime()) / (1000 * 3600 * 24 * 365));
-            const interest = data.interest; 
+            const interest = data.interest;
             Advert.find({minAge:{$lte:age}, categorie:{$in:interest},status:"Accepté"}).select({_id :1})
                 .then(data => {
                     const tmp = data[Math.floor(Math.random()*data.length)];
@@ -76,8 +76,8 @@ exports.getAdvert = (req,res,next)=> {
                         .then(data => sendMessage(res,data))
                         .catch(error => sendError(res ,{ 'error': error.stack }));
                 })
-                .catch(error => sendError(res, { 'error': error.stack  })); 
-        }) 
+                .catch(error => sendError(res, { 'error': error.stack  }));
+        })
         .catch(error => sendError(res, { 'error': error.stack  }));
 
 }
@@ -94,6 +94,3 @@ exports.getAdvertNoConnected = (req,res,next)=> {
         })
         .catch(error => sendError(res, { 'error': error.stack  }));
 }
-
-
-

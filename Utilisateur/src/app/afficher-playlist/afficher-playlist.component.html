@@ -1,0 +1,25 @@
+<div class="row row-cols-2 cards">
+  <div *ngFor="let video of videos[0].list_video">
+    <mat-card class="card-video">
+<mat-card-header>
+  <mat-card-title>{{video.createur}}{{video.titre}}</mat-card-title>
+</mat-card-header>
+<mat-card-content>
+  <mat-card-content>
+    <youtube-player
+      videoId="{{video.videoId}}"
+      suggestedQuality="highres"
+      [height]="250"
+      [width]="600"
+      [startSeconds]="4"
+      [endSeconds]="8">
+    </youtube-player>
+  </mat-card-content>
+</mat-card-content>
+<mat-card-actions>
+  <a mat-button href="{{video.url}}" target="_blank">Link</a>
+  <a mat-button class="btn btn-info" (click)="supprimerVideo(playlistId,video.videoId)">Supprimer</a>
+</mat-card-actions>
+</mat-card>
+  </div>
+</div>

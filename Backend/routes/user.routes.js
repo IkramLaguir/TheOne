@@ -14,51 +14,51 @@ module.exports = app =>{
         sendMessage(res,"Welcome to The One!");
     })
 
-    router.post('/signup', (req, res) => { 
-        userCtrl.signup(req,res); 
+    router.post('/signup', (req, res) => {
+        userCtrl.signup(req,res);
     });
 
-    router.post('/login', (req, res) => { 
-        userCtrl.login(req,res); 
+    router.post('/login', (req, res) => {
+        userCtrl.login(req,res);
         //req.auth = res.data.userId;
     });
 
     //Create a Playlist:
     router.post('/create', (req, res) => {
-        playlistCtrl.create(req,res); 
+        playlistCtrl.create(req,res);
     });
 
     //Get all playlist of a user
     router.get('/playlists/:userId', (req, res) => {
-        playlistCtrl.playlists(req,res); 
+        playlistCtrl.playlists(req,res);
     });
 
     //Add a video to a Playlist:
-    router.post('/addVideo', (req, res) => { 
-        playlistCtrl.addVideo(req,res); 
+    router.post('/addVideo', (req, res) => {
+        playlistCtrl.addVideo(req,res);
     });
 
     //Get all playlist of a user
     router.get('/videos/:playlistId', (req, res) => {
-        playlistCtrl.videos(req,res); 
+        playlistCtrl.videos(req,res);
     });
 
     //Delete a video from a playlist
-    router.delete('/deleteVideo', (req, res) => { 
-        playlistCtrl.deleteVideo(req,res); 
+    router.delete('/deleteVideo', (req, res) => {
+        playlistCtrl.deleteVideo(req,res);
     });
 
     // Delete a playlist
     router.delete('/deletePlaylist/:playlistId', (req, res) => {
-        playlistCtrl.deletePlaylist(req,res); 
+        playlistCtrl.deletePlaylist(req,res);
     });
 
 
     //Get advert
     router.get('/advert/:userId', (req, res) => {
-        userCtrl.getAdvert(req,res); 
+        userCtrl.getAdvert(req,res);
     });
-    
+
 
     router.get('/advert', (req, res) => {
         userCtrl.getAdvertNoConnected(req,res);
