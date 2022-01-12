@@ -60,7 +60,7 @@ exports.create =  async(req, res, next) => {
         country: req.body.pays,
         category:req.body.category,
         text: req.body.text,
-        status : "En cours",//  Accepté
+        status : "En cours",
     }
     
     const advertModel = new Advert(advert);

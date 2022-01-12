@@ -1,8 +1,6 @@
-//const User = require('../models/user')
 const db = require('../../models/index')
 
 const User = db.user
-//const InfoUser = db.infoUser
 const Advert = db.advert
 
 const bcrypt = require('bcrypt')
@@ -12,7 +10,6 @@ const jwt = require('jsonwebtoken');
 const {sendError, sendMessage} = require ("../../message");
 
 exports.signup =  (req, res, next) => {
-    //console.log(req.body);
     bcrypt.hash(req.body.password, 10)
         .then(async (hash) => {
 
@@ -94,12 +91,8 @@ exports.getAdvertNoConnected = (req,res,next)=> {
             Advert.findOneAndUpdate({ _id:tmp["_id"]},{ $inc: {'nbOfVues': 1 } }).select({text :1})
                 .then(data => sendMessage(res,data))
                 .catch(error => sendError(res ,{ 'error': error.stack }));
-
         })
         .catch(error => sendError(res, { 'error': error.stack  }));
-
-
-
 }
 
 

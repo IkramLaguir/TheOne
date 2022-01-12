@@ -8,12 +8,10 @@ module.exports = app =>{
     var router = require("express").Router();
 
 
-    const auth = require('../middleware/auth');
     const advertiserCtrl = require ('../controllers/advertiser/advertiser');
 
 
     router.get('/',(req,res)=> {
-        //sendMessage(res,"Welcome to The One!");
         sendMessage(res,"Welcome to The One!");
     })
 

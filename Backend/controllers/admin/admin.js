@@ -10,10 +10,8 @@ const jwt = require('jsonwebtoken');
 const {sendError, sendMessage} = require ("../../message");
 
 exports.signup =  (req, res, next) => {
-    //console.log(req.body);
     bcrypt.hash(req.body.password, 10)
         .then(async (hash) => {
-
             const admin = {
                 email: req.body.email,
                 password: hash
@@ -24,9 +22,6 @@ exports.signup =  (req, res, next) => {
             await adminModel.save()
                 .then(() => sendMessage(res,{ message: 'Administrateur créé !' }))
                 .catch(error => sendError(res ,{ 'error': error.stack }));
-                
-
-
         })
         .catch(error => sendError(res ,{ 'error': error.stack }));        
   };

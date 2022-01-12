@@ -7,13 +7,10 @@ module.exports = app =>{
     const {sendError, sendMessage} = require ("../message");
     var router = require("express").Router();
 
-
     router.get('/',(req,res)=> {
-        //sendMessage(res,"Welcome to The One!");
         sendMessage(res,"Welcome to The One!");
     })
 
-    const auth = require('../middleware/auth');
     const adminCtrl = require ('../controllers/admin/admin');
 
     router.post('/signup', (req, res) => { 

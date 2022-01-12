@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const playlistSchema = new mongoose.Schema({
     user : { type: Schema.Types.ObjectId, ref: 'User' },
     name :{type: String, required: true},
-    list_video: [//{type: [Object], required: false}
+    list_video: [
       {
         createur : {type: String, required: false},
         description : {type: String, required: false},
