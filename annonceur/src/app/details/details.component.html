@@ -1,0 +1,17 @@
+<div class="container">
+  <h3 class="title">
+    {{ DATA?.title }} / {{ DATA?.category }} / {{ DATA?.state }}
+  </h3>
+  <div class="pub-content">
+    <span>{{ DATA?.pubDetail }}</span>
+  </div>
+
+  <div class="buttons">
+    <button mat-flat-button color="primary" (click)="deleteAnnonce()">
+      Supprimer</button
+    >{{ " " }}
+    <button mat-flat-button color="primary" (click)="backToHome()">
+      Retour
+    </button>
+  </div>
+</div>

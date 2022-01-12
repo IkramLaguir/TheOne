@@ -1,0 +1,13 @@
+<br/>
+<button mat-raised-button color="primary" (click)="openDialog()" id="creer">Créer playlist</button>
+<div class="row row-cols-4">
+<mat-card class = "card-playlist" *ngFor="let playlist of playlists">
+  <mat-card-title>{{playlist.name}}</mat-card-title>
+  <div class="button">
+    <button mat-stroked-button color = "basic" (click)="supprimer(playlist._id)" class="btn-space">Supprimer</button>
+    <a [routerLink]="['/afficher',playlist._id]">
+    <button mat-raised-button color="accent" class="btn-space">Ouvrir</button>
+    </a>
+  </div>
+</mat-card>
+</div>
