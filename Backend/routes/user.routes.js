@@ -20,7 +20,6 @@ module.exports = app =>{
 
     router.post('/login', (req, res) => {
         userCtrl.login(req,res);
-        //req.auth = res.data.userId;
     });
 
     //Create a Playlist:

@@ -1,4 +1,3 @@
-//const User = require('../models/user')
 const db = require('../../models/index')
 
 const Admin = db.admin

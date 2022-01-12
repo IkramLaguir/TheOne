@@ -41,6 +41,7 @@ const port = process.env.PORT || 3000;
 require('./routes/user.routes')(app);
 require('./routes/admin.routes')(app);
 require('./routes/advertiser.routes')(app);
+require('./routes/data.route')(app);
 
 
 app.listen(port, () => {console.log (`listening on port ${port}`)});
